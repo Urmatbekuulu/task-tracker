@@ -20,7 +20,7 @@ namespace task_tracker.ApiEndpoints
             _projectService = projectService;
         }
         
-        [HttpPost("api/project/update")]
+        [HttpPut("api/project/update")]
         [SwaggerOperation(
             Summary = "Updates project",
             Description = "Updates existing project",

@@ -15,7 +15,7 @@ namespace task_tracker.ApiEndpoints.Project.Requests
         {
             _taskService = taskService;
         }
-        [HttpGet("api/task/delete/{id:int}")]
+        [HttpDelete("api/task/delete/{id:int}")]
         [SwaggerOperation(
             Summary = "Delete Task",
             Description = "Deletes a Task with id",

@@ -20,7 +20,7 @@ namespace task_tracker.ApiEndpoints.Task
             [Required]
             public int ProjectId { get; set; }
         }
-        public class ViewAll
+        public class ViewAllTask
         {
             [Required]
             public int Id { get; set; }

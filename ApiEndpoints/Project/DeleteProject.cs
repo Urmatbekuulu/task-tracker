@@ -16,7 +16,7 @@ namespace task_tracker.ApiEndpoints.Project
         {
             _projectService = projectService;
         }
-        [HttpGet("api/project/delete/{id:int}")]
+        [HttpDelete("api/project/delete/{id:int}")]
         [SwaggerOperation(
             Summary = "Delete project",
             Description = "Deletes project by id",

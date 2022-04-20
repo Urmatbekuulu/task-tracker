@@ -15,7 +15,7 @@ namespace task_tracker.ApiEndpoints.Project.Requests
         {
             _taskService = taskService;
         }
-        [HttpPost("api/task/update")]
+        [HttpPut("api/task/update")]
         [SwaggerOperation(
             Summary = "Update Task",
             Description = "Updates existing task",
@@ -24,7 +24,18 @@ namespace task_tracker.ApiEndpoints.Project.Requests
         ]
         public override async Task<ActionResult<int>> HandleAsync(Task.Request.UpdateTask request, CancellationToken cancellationToken = new CancellationToken())
         {
-            throw new System.NotImplementedException();
+            var result = await _taskService.UpdateTask(new Entities.Task()
+            {
+                Name = request.Name,
+                Description = request.Description,
+                Id = request.Id,
+                Priority = request.Priority,
+                ProjectId = request.ProjectId,
+                TaskStatus = request.TaskStatus
+                
+
+            });
+            return result;
         }
     }
 }
