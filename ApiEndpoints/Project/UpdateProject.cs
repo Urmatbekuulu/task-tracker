@@ -11,7 +11,7 @@ using task_tracker.Services;
 
 namespace task_tracker.ApiEndpoints
 {
-    public class UpdateProject:EndpointBaseAsync.WithRequest<Request.UpdateProject>.WithResult<Response.UpdatedResul>
+    public class UpdateProject:EndpointBaseAsync.WithRequest<Request.UpdateProject>.WithResult<int>
     {
         private readonly IProjectService _projectService;
 
@@ -27,9 +27,16 @@ namespace task_tracker.ApiEndpoints
             OperationId = "Projects.Updated",
             Tags = new[] { "Projects" })
         ]
-        public override Task<Response.UpdatedResul> HandleAsync(Request.UpdateProject request, CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<int> HandleAsync(Request.UpdateProject request, CancellationToken cancellationToken = new CancellationToken())
         {
-            throw new System.NotImplementedException();
+            return await _projectService.UpdateProject(new Entities.Project()
+            {
+                Id = request.Id,
+                Priority = request.Priority,
+                CompletionDate = request.CompletionDate,
+                StartDate = request.StartDate,
+                ProjectStatus = request.ProjectStatus
+            });
         }
     }
 }

@@ -8,7 +8,7 @@ using task_tracker.Services;
 
 namespace task_tracker.ApiEndpoints.Project
 {
-    public class DeleteProject:EndpointBaseAsync.WithRequest<int>.WithResult<ActionResult<Response.Deleted>>
+    public class DeleteProject:EndpointBaseAsync.WithRequest<int>.WithResult<ActionResult<int>>
     {
         private readonly IProjectService _projectService;
 
@@ -23,13 +23,13 @@ namespace task_tracker.ApiEndpoints.Project
             OperationId = "Projects.Delete",
             Tags = new[] { "Projects" })
         ]
-        public override async Task<ActionResult<Response.Deleted>> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<ActionResult<int>> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
         {
             
             if(id<1) return BadRequest("Something was wrong");
             var project = await _projectService.GetProjectById(id);
             var result =  await _projectService.DeleteProject(project);
-            return Ok(new Response.Deleted() {Result = result});
+            return Ok(result);
             
         }
     }

@@ -14,11 +14,7 @@ namespace task_tracker.ApiEndpoints.Project.Requests
         {
            
         }
-        public class Deleted
-        {
-            public int Result { get; set; }
-        }
-
+       
         public class ViewAll
         {
             public int Id { get; set; }
@@ -35,12 +31,9 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             public string ProjectStatus { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime CompletionDate { get; set; }
-            public ICollection<Task> Tasks { get; set; }
+            public ICollection<Entities.Task> Tasks { get; set; }
         }
-        public class UpdatedResul
-        {
-            
-        }
+    
 
         
         
