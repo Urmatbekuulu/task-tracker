@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using task_tracker.Data;
+using task_tracker.Services;
 
 namespace task_tracker
 {
@@ -39,6 +40,10 @@ namespace task_tracker
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "task_tracker", Version = "v1" });
                 c.EnableAnnotations();
             });
+            
+            services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<ITaskService, TaskService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

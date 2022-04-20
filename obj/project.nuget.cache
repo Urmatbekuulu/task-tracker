@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "pX8/HxvhUwZlctDGFEAG+AQpwZa5+C8T9l0XHJP5M+Yws687tNjpFctuUBs6PlkyfE/hDA/3FLSbtxoAFH1FkA==",
+  "dgSpecHash": "8URMHLx+/8pUaIPm3q7bPE7i+kkNY6lorvEXuvcIXC8MLRAjKe6rkxpFx0qnxq0NccOB9XSYjY5cElidNjVnfA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker\\task-tracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Notnik_kg\\.nuget\\packages\\ardalis.apiendpoints\\4.0.1\\ardalis.apiendpoints.4.0.1.nupkg.sha512",
     "C:\\Users\\Notnik_kg\\.nuget\\packages\\ardalis.apiendpoints.codeanalyzers\\4.0.0\\ardalis.apiendpoints.codeanalyzers.4.0.0.nupkg.sha512",
     "C:\\Users\\Notnik_kg\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Notnik_kg\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
+    "C:\\Users\\Notnik_kg\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\Notnik_kg\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.1.0\\microsoft.aspnetcore.authentication.abstractions.2.1.0.nupkg.sha512",
     "C:\\Users\\Notnik_kg\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.0\\microsoft.aspnetcore.authentication.core.2.1.0.nupkg.sha512",
     "C:\\Users\\Notnik_kg\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.1.0\\microsoft.aspnetcore.authorization.2.1.0.nupkg.sha512",
