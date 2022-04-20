@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using task_tracker.Data;
 using task_tracker.Services;
+using MediatR;
 
 namespace task_tracker
 {
@@ -43,7 +44,9 @@ namespace task_tracker
             
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ITaskService, TaskService>();
-            
+
+            services.AddMediatR()
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
