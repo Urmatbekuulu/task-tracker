@@ -1,34 +1,48 @@
 ﻿using System.Collections.Generic;
+using System.Media;
+using System.Numerics;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using task_tracker.Data;
 using task_tracker.Entities;
 
 namespace task_tracker.Services
 {
     public class ProjectService:IProjectService
     {
-        public Task<IEnumerable<Project>> GetProjectList()
+        private readonly ApplicationDbContext _dbContext;
+
+        public ProjectService(ApplicationDbContext dbContext)
         {
-            throw new System.NotImplementedException();
+            _dbContext = dbContext;
+        }
+        public async Task<IEnumerable<Project>> GetProjectList()
+        {
+            return await _dbContext.Projects.ToListAsync();
         }
 
-        public Task<Project> GetProjectById(int id)
+        public async Task<Project> GetProjectById(int id)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Projects.FirstOrDefaultAsync(p=>p.Id == id);
         }
 
-        public Task<Project> CreateProject(Project project)
+        public async Task<Project> CreateProject(Project project)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Projects.Add(project);
+            await _dbContext.SaveChangesAsync();
+            return project;
         }
 
-        public Task<int> UpdateProject(Project project)
+        public async Task<int> UpdateProject(Project project)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Projects.Update(project);
+            return await _dbContext.SaveChangesAsync();
         }
 
-        public Task<int> DeleteProject(Project project)
+        public async Task<int> DeleteProject(Project project)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Projects.Remove(project);
+            return await _dbContext.SaveChangesAsync();
         }
     }
 }

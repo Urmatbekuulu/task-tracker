@@ -1,34 +1,48 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using task_tracker.Data;
 using Task = task_tracker.Entities.Task;
 
 namespace task_tracker.Services
 {
     public class TaskService:ITaskService
     {
-        public System.Threading.Tasks.Task<IEnumerable<Task>> GetTaskList()
+        private readonly ApplicationDbContext _dbContext;
+
+        public TaskService(ApplicationDbContext dbContext)
         {
-            throw new System.NotImplementedException();
+            _dbContext = dbContext;
+        }
+        
+        public  async System.Threading.Tasks.Task<IEnumerable<Task>> GetTaskList()
+        {
+            return await _dbContext.Tasks.ToListAsync();
         }
 
-        public System.Threading.Tasks.Task<Task> GetTaskById(int id)
+        public async System.Threading.Tasks.Task<Task> GetTaskById(int id)
         {
-            throw new System.NotImplementedException();
+            return await _dbContext.Tasks.FirstOrDefaultAsync(x => x.Id == id);
+
         }
 
-        public System.Threading.Tasks.Task<Task> CreateTask(Task task)
+        public async System.Threading.Tasks.Task<Task> CreateTask(Task task)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Tasks.Add(task);
+            await _dbContext.SaveChangesAsync();
+            return task;
         }
 
-        public Task<int> UpdateTask(Task task)
+        public async Task<int> UpdateTask(Task task)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Tasks.Update(task);
+            return await _dbContext.SaveChangesAsync();
         }
 
-        public Task<int> DeleteTask(Task task)
+        public async Task<int> DeleteTask(Task task)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Tasks.Remove(task);
+            return await _dbContext.SaveChangesAsync();
         }
     }
 }
