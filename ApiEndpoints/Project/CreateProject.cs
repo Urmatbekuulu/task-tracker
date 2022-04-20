@@ -4,12 +4,12 @@ using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.ApiEndpoints.Project.Requests;
-using task_tracker.Features.Project.Commands;
+
 using task_tracker.Services;
 
 namespace task_tracker.ApiEndpoints.Project
 {
-    public class CreateProject : EndpointBaseAsync.WithRequest<CreateProjectCommand>.WithResult<
+    public class CreateProject : EndpointBaseAsync.WithRequest<Request.CreateProject>.WithResult<
         ActionResult<Response.CreateProjectResponse>>
     {
         private readonly IProjectService _projectService;
@@ -26,7 +26,7 @@ namespace task_tracker.ApiEndpoints.Project
             OperationId = "Projects.Create",
             Tags = new[] { "Projects" })
         ]
-        public override async  Task<ActionResult<Response.CreateProjectResponse>> HandleAsync(CreateProjectCommand request, CancellationToken cancellationToken = new CancellationToken())
+        public override async  Task<ActionResult<Response.CreateProjectResponse>> HandleAsync(Request.CreateProject request, CancellationToken cancellationToken = new CancellationToken())
         {
             if (ModelState.IsValid)
             {
@@ -34,6 +34,7 @@ namespace task_tracker.ApiEndpoints.Project
                 {
                     Name = request.Name,
                     CompletionDate = request.CompletionDate,
+                    StartDate = request.StartDate,
                     Priority = request.Priority,
                     ProjectStatus = request.ProjectStatus
                 });
