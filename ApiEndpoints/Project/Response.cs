@@ -37,6 +37,10 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             public DateTime CompletionDate { get; set; }
             public ICollection<Task> Tasks { get; set; }
         }
+        public class UpdatedResul
+        {
+            
+        }
 
         
         
