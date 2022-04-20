@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>task_tracker</RootNamespace>
+    <UserSecretsId>4a87cb57-b2bd-45ac-8782-111c073a2bce</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
