@@ -21,6 +21,9 @@
 
   <ItemGroup>
     <Folder Include="ApiEndpoints\Task" />
+    <Folder Include="Features\Project\Queries" />
+    <Folder Include="Features\Task\Commands" />
+    <Folder Include="Features\Task\Queries" />
   </ItemGroup>
 
 </Project>

@@ -41,7 +41,7 @@ namespace task_tracker.Services
 
         public async Task<int> DeleteProject(Project project)
         {
-            _dbContext.Projects.Remove(project);
+            if(project is not null)_dbContext.Projects.Remove(project);
             return await _dbContext.SaveChangesAsync();
         }
     }

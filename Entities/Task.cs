@@ -9,5 +9,6 @@ namespace task_tracker.Entities
         public string Description { get; set; }
         public int Priority { get; set; }
         public int ProjectId { get; set; }
+        
     }
 }

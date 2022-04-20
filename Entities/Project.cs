@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using task_tracker.Enums;
 
 namespace task_tracker.Entities
@@ -10,5 +11,6 @@ namespace task_tracker.Entities
         public DateTime CompletionDate { get; set; }
         public ProjectStatus ProjectStatus { get; set; }
         public int Priority { get; set; }
+        
     }
 }

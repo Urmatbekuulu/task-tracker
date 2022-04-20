@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using task_tracker.Data;
@@ -45,7 +46,7 @@ namespace task_tracker
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ITaskService, TaskService>();
 
-            services.AddMediatR()
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
         }
 
