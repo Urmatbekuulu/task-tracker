@@ -46,7 +46,6 @@ namespace task_tracker
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ITaskService, TaskService>();
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
 
         }
 
