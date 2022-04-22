@@ -10,11 +10,9 @@ namespace task_tracker.ApiEndpoints.Project
 {
     public class DeleteProject:EndpointBaseAsync.WithRequest<int>.WithResult<ActionResult<int>>
     {
-        private readonly IProjectService _projectService;
 
-        public DeleteProject(IProjectService projectService)
+        public DeleteProject()
         {
-            _projectService = projectService;
         }
         [HttpDelete("api/project/delete/{id:int}")]
         [SwaggerOperation(

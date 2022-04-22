@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using task_tracker.BLL;
 using task_tracker.DAL;
 
 namespace task_tracker
@@ -32,10 +33,8 @@ namespace task_tracker
                 c.EnableAnnotations();
             });
             
-           
-            //Data Access Layer setup
-            services.AddDAccessLayerServices(Configuration);
-
+            //Add Business layer services
+            services.AddBusinessServices(Configuration);
 
         }
 

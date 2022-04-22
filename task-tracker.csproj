@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\task-tracker.BLL\task-tracker.BLL.csproj" />
     <ProjectReference Include="..\task-tracker.DAL\task-tracker.DAL.csproj" />
   </ItemGroup>
 

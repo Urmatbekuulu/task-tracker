@@ -12,11 +12,9 @@ namespace task_tracker.ApiEndpoints.Project
     public class CreateProject : EndpointBaseAsync.WithRequest<Request.CreateProject>.WithResult<
         ActionResult<Response.CreateProjectResponse>>
     {
-        private readonly IProjectService _projectService;
 
-        public CreateProject(IProjectService projectService)
+        public CreateProject()
         {
-            _projectService = projectService;
         }
         
         [HttpPost("api/project/create")]

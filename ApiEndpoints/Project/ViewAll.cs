@@ -7,8 +7,7 @@ using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.ApiEndpoints.Project.Requests;
-using task_tracker.Enums;
-using task_tracker.Services;
+
 
 namespace task_tracker.ApiEndpoints.Project
 {
