@@ -8,8 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using task_tracker.DAL;
-using task_tracker.Services;
-
 
 namespace task_tracker
 {
