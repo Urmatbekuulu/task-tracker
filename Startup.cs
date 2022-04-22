@@ -38,7 +38,7 @@ namespace task_tracker
             services.AddScoped<ITaskService, TaskService>();
             
             //Data Access Layer setup
-            services.AddDbContexts(Configuration);
+            services.AddDAccessLayerServices(Configuration);
 
 
         }
