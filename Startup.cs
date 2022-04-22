@@ -34,9 +34,7 @@ namespace task_tracker
                 c.EnableAnnotations();
             });
             
-            services.AddScoped<IProjectService, ProjectService>();
-            services.AddScoped<ITaskService, TaskService>();
-            
+           
             //Data Access Layer setup
             services.AddDAccessLayerServices(Configuration);
 
