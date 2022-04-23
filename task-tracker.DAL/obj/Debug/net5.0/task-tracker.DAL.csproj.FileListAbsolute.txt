@@ -1,0 +1,5 @@
+C:\Users\Notnik_kg\c#\task-tracker\task-tracker.DAL\obj\Debug\net5.0\task-tracker.DAL.csproj.AssemblyReference.cache
+C:\Users\Notnik_kg\c#\task-tracker\task-tracker.DAL\obj\Debug\net5.0\task-tracker.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Notnik_kg\c#\task-tracker\task-tracker.DAL\obj\Debug\net5.0\task-tracker.DAL.AssemblyInfoInputs.cache
+C:\Users\Notnik_kg\c#\task-tracker\task-tracker.DAL\obj\Debug\net5.0\task-tracker.DAL.AssemblyInfo.cs
+C:\Users\Notnik_kg\c#\task-tracker\task-tracker.DAL\obj\Debug\net5.0\task-tracker.DAL.csproj.CoreCompileInputs.cache
