@@ -24,8 +24,8 @@ namespace task_tracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var currentAssembly = typeof(Startup).Assembly;
             
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -35,7 +35,13 @@ namespace task_tracker
             
             //Add Business layer services
             services.AddBusinessServices(Configuration);
+            //Add Data Access layer services
             services.AddDAccessLayerServices(Configuration);
+
+            services.AddAutoMapper(currentAssembly);
+
+
+
 
         }
 
