@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,6 +6,7 @@ using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.ApiEndpoints.Project.Requests;
+using task_tracker.BLL.Interfaces;
 
 
 namespace task_tracker.ApiEndpoints.Project
@@ -28,13 +28,10 @@ namespace task_tracker.ApiEndpoints.Project
         ]
         public override async Task<ActionResult<IEnumerable<Response.ViewAll>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            var list =  _projectService.GetProjectList();
+            var list =  _projectService.GetProjectsAsync();
             return Ok(list.Result.Select(x => new Response.ViewAll()
             {
-                Name = x.Name,
-                Priority = x.Priority,
-                Id = x.Id,
-                ProjectStatus = x.ProjectStatus.ToString()
+               
             }));
         }
     }

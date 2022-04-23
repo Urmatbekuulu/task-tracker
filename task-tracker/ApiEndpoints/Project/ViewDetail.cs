@@ -5,7 +5,7 @@ using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.ApiEndpoints.Project.Requests;
-using task_tracker.Services;
+using task_tracker.BLL.Interfaces;
 
 namespace task_tracker.ApiEndpoints.Project
 {
@@ -29,21 +29,21 @@ namespace task_tracker.ApiEndpoints.Project
         public override async Task<ActionResult<Response.ViewDetailly>> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
         {
             if (id < 1) return BadRequest("Id is not permittable");
-            var project =await _projectService.GetProjectById(id);
+            var project =await _projectService.GetProjectByIdAsync(id);
            if (project is not null)
            {
                return Ok(new Response.ViewDetailly
                {
-                   Name = project.Name,
-                   Id = project.Id,
-                   Priority = project.Priority,
-                   CompletionDate = project.CompletionDate,
-                   StartDate = project.StartDate,
-                   ProjectStatus = project.ProjectStatus.ToString(),
-                   Tasks = _taskService.GetTaskList()
-                       .Result
-                       .Where(t=>t.ProjectId==id)
-                       .ToList()
+                   // Name = project.Name,
+                   // Id = project.Id,
+                   // Priority = project.Priority,
+                   // CompletionDate = project.CompletionDate,
+                   // StartDate = project.StartDate,
+                   // ProjectStatus = project.ProjectStatus.ToString(),
+                   // Tasks = _taskService.GetTaskList()
+                   //     .Result
+                   //     .Where(t=>t.ProjectId==id)
+                   //     .ToList()
                });
            }
 

@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using task_tracker.Services;
+using task_tracker.BLL.DTOs;
+using task_tracker.BLL.Interfaces;
+
 
 namespace task_tracker.ApiEndpoints.Project.Requests
 {
@@ -26,24 +28,24 @@ namespace task_tracker.ApiEndpoints.Project.Requests
         public override async Task<ActionResult<Task.Response.CreatedTask>> HandleAsync(Task.Request.CreateTask request, CancellationToken cancellationToken = new CancellationToken())
         {
 
-            var result = await _taskService.CreateTask(new Entities.Task()
+            var result = await _taskService.CreateTaskAsync(new TaskDTO()
             {
-                Name = request.Name,
-                Priority = request.Priority,
-                ProjectId = request.ProjectId,
-                TaskStatus = request.TaskStatus,
-                Description = request.Description
+                // Name = request.Name,
+                // Priority = request.Priority,
+                // ProjectId = request.ProjectId,
+                // TaskStatus = request.TaskStatus,
+                // Description = request.Description
                 
             });
             if (result != null)
                 return Ok(new Task.Response.CreatedTask()
                 {
-                    Name = result.Name,
-                    Description = result.Description,
-                    Priority = result.Priority,
-                    TaskStatus = request.TaskStatus.ToString(),
-                    Id = result.Id,
-                    ProjectId = result.ProjectId
+                    // Name = result.Name,
+                    // Description = result.Description,
+                    // Priority = result.Priority,
+                    // TaskStatus = request.TaskStatus.ToString(),
+                    // Id = result.Id,
+                    // ProjectId = result.ProjectId
                 });
             return BadRequest("Something was wrong");
         }

@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using task_tracker.Services;
+using task_tracker.BLL.Interfaces;
+
 
 namespace task_tracker.ApiEndpoints.Project.Requests
 {
@@ -26,13 +27,13 @@ namespace task_tracker.ApiEndpoints.Project.Requests
         ]
         public override async Task<ActionResult<IEnumerable<Task.Response.ViewAllTask>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            var result = await _taskService.GetTaskList();
+            var result = await _taskService.GetAllTasksAsync();
             return Ok(result.Select(t => new Task.Response.ViewAllTask()
             {
-                Name = t.Name,
-                Id = t.Id,
-                ProjectId = t.Id,
-                TaskStatus = t.TaskStatus.ToString()
+                // Name = t.Name,
+                // Id = t.Id,
+                // ProjectId = t.Id,
+                // TaskStatus = t.TaskStatus.ToString()
 
             }).ToList());
         }

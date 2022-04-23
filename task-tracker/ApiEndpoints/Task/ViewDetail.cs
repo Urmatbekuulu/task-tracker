@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using task_tracker.Services;
+using task_tracker.BLL.Interfaces;
+
 
 namespace task_tracker.ApiEndpoints.Project.Requests
 {
@@ -26,16 +27,16 @@ namespace task_tracker.ApiEndpoints.Project.Requests
         public override async Task<ActionResult<Task.Response.ViewDetail>> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
         {
            
-            var task = await _taskService.GetTaskById(id);
-            if (task is not null)
+            var task = await _taskService.GetTaskByIdAsync(id);
+            if (task != null)
                 return Ok(new Task.Response.ViewDetail()
                 {
-                    Id   = task.Id,
-                    Name = task.Name,
-                    Description = task.Description,
-                    Priority = task.Priority,
-                    ProjectId = task.ProjectId,
-                    TaskStatus = task.TaskStatus.ToString()
+                    // Id   = task.Id,
+                    // Name = task.Name,
+                    // Description = task.Description,
+                    // Priority = task.Priority,
+                    // ProjectId = task.ProjectId,
+                    // TaskStatus = task.TaskStatus.ToString()
                 });
             return BadRequest("Something was wrong");
         }

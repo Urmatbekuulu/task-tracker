@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.ApiEndpoints.Project;
 using task_tracker.ApiEndpoints.Project.Requests;
-using task_tracker.Services;
+using task_tracker.BLL.DTOs;
+using task_tracker.BLL.Interfaces;
 
 namespace task_tracker.ApiEndpoints
 {
@@ -29,14 +30,8 @@ namespace task_tracker.ApiEndpoints
         ]
         public override async Task<int> HandleAsync(Request.UpdateProject request, CancellationToken cancellationToken = new CancellationToken())
         {
-            return await _projectService.UpdateProject(new Entities.Project()
-            {
-                Id = request.Id,
-                Priority = request.Priority,
-                CompletionDate = request.CompletionDate,
-                StartDate = request.StartDate,
-                ProjectStatus = request.ProjectStatus
-            });
+             _projectService.UpdateProjectAsync(new ProjectDTO(){});
+             return 0;
         }
     }
 }

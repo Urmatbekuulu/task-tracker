@@ -31,7 +31,7 @@ namespace task_tracker.BLL.Services
             throw new NotImplementedException();
         }
 
-        public Task<TaskDTO> GetTaskByIdAsync(TaskDTO taskDto)
+        public Task<TaskDTO> GetTaskByIdAsync(int id)
         {
             throw new NotImplementedException();
         }

@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using task_tracker.Services;
+using task_tracker.BLL.Interfaces;
+
 
 namespace task_tracker.ApiEndpoints.Project.Requests
 {

@@ -4,17 +4,19 @@ using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.ApiEndpoints.Project.Requests;
-
-using task_tracker.Services;
+using task_tracker.BLL.DTOs;
+using task_tracker.BLL.Interfaces;
 
 namespace task_tracker.ApiEndpoints.Project
 {
     public class CreateProject : EndpointBaseAsync.WithRequest<Request.CreateProject>.WithResult<
         ActionResult<Response.CreateProjectResponse>>
     {
+        private readonly IProjectService _projectService;
 
-        public CreateProject()
+        public CreateProject(IProjectService projectService)
         {
+            _projectService = projectService;
         }
         
         [HttpPost("api/project/create")]
@@ -28,26 +30,15 @@ namespace task_tracker.ApiEndpoints.Project
         {
             if (ModelState.IsValid)
             {
-                var result = await _projectService.CreateProject(new Entities.Project()
+                var result = await _projectService.CreateProjectAsync(new ProjectDTO()
                 {
-                    Name = request.Name,
-                    CompletionDate = request.CompletionDate,
-                    StartDate = request.StartDate,
-                    Priority = request.Priority,
-                    ProjectStatus = request.ProjectStatus
+                    
                 });
-                return Ok(new Response.CreateProjectResponse()
-                {
-                    CompletionDate = result.CompletionDate,
-                    Id = result.Id,
-                    Name = result.Name,
-                    Priority = result.Priority,
-                    ProjectStatus = result.ProjectStatus,
-                    StartDate = result.StartDate
-                });
+                return Ok();
             }
 
             return BadRequest("Something was wrong");
         }
+    
     }
 }

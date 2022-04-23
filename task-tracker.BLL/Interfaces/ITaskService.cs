@@ -13,7 +13,7 @@ namespace task_tracker.BLL.Interfaces
         Task<TaskDTO> CreateTaskAsync(TaskDTO taskDto);
         Task UpdateTaskAsync(TaskDTO taskDto);
         Task DeleteTaskAsync(TaskDTO taskDto);
-        Task<TaskDTO> GetTaskByIdAsync(TaskDTO taskDto);
+        Task<TaskDTO> GetTaskByIdAsync(int id);
         Task<IEnumerable<TaskDTO>> GetProjectTasksAsync(int projectId);
         Task<IEnumerable<TaskDTO>> GetAllTasksAsync();
         Task<IEnumerable<TaskDTO>> FindTasksAsync(Func<TaskDTO, bool> predicate);

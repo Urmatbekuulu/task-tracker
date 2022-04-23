@@ -158,9 +158,6 @@
             "projectReferences": {
               "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj": {
                 "projectPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj"
-              },
-              "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj": {
-                "projectPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj"
               }
             }
           }

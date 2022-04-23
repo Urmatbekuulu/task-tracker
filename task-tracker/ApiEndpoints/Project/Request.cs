@@ -15,7 +15,7 @@ namespace task_tracker.ApiEndpoints.Project
             [Required]
             public DateTime CompletionDate { get; set; }
             [Required]
-            public ProjectStatus ProjectStatus { get; set; }
+            public string ProjectStatus { get; set; }
             [Required]
             public int Priority { get; set; }
         }
@@ -36,7 +36,7 @@ namespace task_tracker.ApiEndpoints.Project
             public string Name { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime CompletionDate { get; set; }
-            public ProjectStatus ProjectStatus { get; set; }
+            public string ProjectStatus { get; set; }
             public int Priority { get; set; }
         }
     }

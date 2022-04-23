@@ -6838,8 +6838,7 @@
       "Ardalis.ApiEndpoints >= 4.0.1",
       "Swashbuckle.AspNetCore >= 5.6.3",
       "Swashbuckle.AspNetCore.Annotations >= 6.3.0",
-      "task-tracker.BLL >= 1.0.0",
-      "task-tracker.DAL >= 1.0.0"
+      "task-tracker.BLL >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6871,9 +6870,6 @@
           "projectReferences": {
             "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj": {
               "projectPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj"
-            },
-            "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj": {
-              "projectPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj"
             }
           }
         }

@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using task_tracker.Entities;
-using task_tracker.Enums;
+using task_tracker.BLL.DTOs;
 
 namespace task_tracker.ApiEndpoints.Project.Requests
 {
     public class Response
     {
-        public class CreateProjectResponse:Entities.Project
+        public class CreateProjectResponse
         {
            
         }
@@ -31,7 +27,7 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             public string ProjectStatus { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime CompletionDate { get; set; }
-            public ICollection<Entities.Task> Tasks { get; set; }
+            public ICollection<TaskDTO> Tasks { get; set; }
         }
     
 

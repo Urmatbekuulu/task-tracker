@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using task_tracker.Services;
+using task_tracker.BLL.DTOs;
+using task_tracker.BLL.Interfaces;
+
 
 namespace task_tracker.ApiEndpoints.Project.Requests
 {
@@ -24,18 +26,9 @@ namespace task_tracker.ApiEndpoints.Project.Requests
         ]
         public override async Task<ActionResult<int>> HandleAsync(Task.Request.UpdateTask request, CancellationToken cancellationToken = new CancellationToken())
         {
-            var result = await _taskService.UpdateTask(new Entities.Task()
-            {
-                Name = request.Name,
-                Description = request.Description,
-                Id = request.Id,
-                Priority = request.Priority,
-                ProjectId = request.ProjectId,
-                TaskStatus = request.TaskStatus
-                
-
-            });
-            return result;
+            await _taskService.UpdateTaskAsync(new TaskDTO(){});
+            
+            return Ok();
         }
     }
 }
