@@ -34,11 +34,10 @@
       "task-tracker/1.0.0": {
         "dependencies": {
           "Ardalis.ApiEndpoints": "4.0.1",
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
-          "Microsoft.EntityFrameworkCore.Design": "5.0.2",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.1",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Swashbuckle.AspNetCore.Annotations": "6.3.0",
+          "task-tracker.BLL": "1.0.0",
+          "task-tracker.DAL": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -350,6 +349,9 @@
             "assemblyVersion": "2.8.0.0",
             "fileVersion": "2.8.26.1919"
           }
+        },
+        "compile": {
+          "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authentication.Abstractions/2.1.0": {
@@ -629,6 +631,9 @@
             "assemblyVersion": "5.0.2.0",
             "fileVersion": "5.0.220.61114"
           }
+        },
+        "compile": {
+          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Design.dll": {}
         }
       },
       "Microsoft.EntityFrameworkCore.Relational/5.0.2": {
@@ -1599,6 +1604,30 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
+        }
+      },
+      "task-tracker.BLL/1.0.0": {
+        "dependencies": {
+          "task-tracker.DAL": "1.0.0"
+        },
+        "runtime": {
+          "task-tracker.BLL.dll": {}
+        },
+        "compile": {
+          "task-tracker.BLL.dll": {}
+        }
+      },
+      "task-tracker.DAL/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.0",
+          "Microsoft.EntityFrameworkCore.Design": "5.0.2",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.1"
+        },
+        "runtime": {
+          "task-tracker.DAL.dll": {}
+        },
+        "compile": {
+          "task-tracker.DAL.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -4218,6 +4247,16 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "task-tracker.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "task-tracker.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
       "type": "referenceassembly",

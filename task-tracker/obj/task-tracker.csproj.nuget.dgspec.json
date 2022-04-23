@@ -103,8 +103,6 @@
               "version": "[5.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.2, )"
             },
@@ -158,6 +156,9 @@
             "projectReferences": {
               "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj": {
                 "projectPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj"
+              },
+              "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj": {
+                "projectPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj"
               }
             }
           }

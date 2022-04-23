@@ -12,9 +12,7 @@ namespace task_tracker.BLL
         {
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ITaskService, TaskService>();
-
-            //Add Data Layer Services
-            services.AddDAccessLayerServices(configuration);
+            
         }
         
     }

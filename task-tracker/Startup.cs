@@ -35,6 +35,7 @@ namespace task_tracker
             
             //Add Business layer services
             services.AddBusinessServices(Configuration);
+            services.AddDAccessLayerServices(Configuration);
 
         }
 

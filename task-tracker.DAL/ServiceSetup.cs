@@ -13,7 +13,7 @@ namespace task_tracker.DAL
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("GetDefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
             //add unit of pattern service 
             services.AddScoped<IUnitOfWork, EFUnitOfWork>();
