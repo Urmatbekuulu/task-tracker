@@ -1,50 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using task_tracker.BLL.DTOs;
 using task_tracker.BLL.Interfaces;
+using task_tracker.DAL.Entities;
 using task_tracker.DAL.Interfaces;
-using Task = task_tracker.DAL.Entities.Task;
+using Task = System.Threading.Tasks.Task;
 
 namespace task_tracker.BLL.Services
 {
     public class ProjectService:IProjectService
     {
         private readonly IUnitOfWork _dataLayer;
+       
 
         public ProjectService(IUnitOfWork dataLayer)
         {
             _dataLayer = dataLayer;
         }
 
-        public Task<ProjectDTO> CreateProjectAsync(ProjectDTO projectDto)
+        public async Task<Project> CreateProjectAsync(Project project)
         {
-            throw new NotImplementedException();
+            var result =await _dataLayer.Projects.Create(project);
+            await _dataLayer.SaveAsync();
+            return result;
         }
 
-        public Task UpdateProjectAsync(ProjectDTO projectDto)
+        public async Task UpdateProjectAsync(Project project)
         {
-            throw new NotImplementedException();
+            await _dataLayer.Projects.Update(project);
+            await _dataLayer.SaveAsync();
         }
 
-        public Task DeleteProjectByIdAsync(int id)
+        public async Task DeleteProjectByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            await _dataLayer.Projects.Delete(id);
+            await _dataLayer.SaveAsync();
         }
 
-        public Task<ProjectDTO> GetProjectByIdAsync(int id)
+        public async Task<Project> GetProjectByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var project = _dataLayer.Projects.GetById(id);
+            return await project;
         }
 
-        public Task<IEnumerable<ProjectDTO>> GetProjectsAsync()
+        public async Task<IEnumerable<Project>> GetProjectsAsync()
         {
-            throw new NotImplementedException();
+            var projects = await _dataLayer.Projects.GetAll();
+          
+            return projects;
         }
 
-        public Task<IEnumerable<ProjectDTO>> FindProjectsAsync(Func<ProjectDTO, bool> predicate)
+        public async Task<IEnumerable<Project>> FindProjectsAsync(Func<Project, bool> predicate)
         {
-            throw new NotImplementedException();
+            var result = await _dataLayer.Projects.Find(predicate);
+            return result;
         }
     }
 }

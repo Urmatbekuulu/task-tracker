@@ -3,13 +3,12 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using task_tracker.BLL.DTOs;
 using task_tracker.BLL.Interfaces;
 
 
-namespace task_tracker.ApiEndpoints.Project.Requests
+namespace task_tracker.ApiEndpoints.Task
 {
-    public class UpdateTask:EndpointBaseAsync.WithRequest<Task.Request.UpdateTask>.WithResult<ActionResult<int>>
+    public class UpdateTask:EndpointBaseAsync.WithRequest<Request.Update>.WithResult<ActionResult<Response.Update>>
     {
         private readonly ITaskService _taskService;
 
@@ -24,10 +23,9 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             OperationId = "Task.Update",
             Tags = new[] { "Tasks" })
         ]
-        public override async Task<ActionResult<int>> HandleAsync(Task.Request.UpdateTask request, CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<ActionResult<Response.Update>> HandleAsync(Request.Update request, CancellationToken cancellationToken = new CancellationToken())
         {
-            await _taskService.UpdateTaskAsync(new TaskDTO(){});
-            
+            await _taskService.UpdateTaskAsync(new DAL.Entities.Task(){});
             return Ok();
         }
     }

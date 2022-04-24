@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using task_tracker.BLL.DTOs;
 using task_tracker.BLL.Interfaces;
 using task_tracker.DAL.Interfaces;
+using task_tracker.DAL.Entities;
+using Task = System.Threading.Tasks.Task;
+
 
 namespace task_tracker.BLL.Services
 {
@@ -16,37 +18,37 @@ namespace task_tracker.BLL.Services
             _dataLayer = dataLayer;
         }
 
-        public Task<TaskDTO> CreateTaskAsync(TaskDTO taskDto)
+        public Task<DAL.Entities.Task> CreateTaskAsync(DAL.Entities.Task task)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateTaskAsync(TaskDTO taskDto)
+        public Task UpdateTaskAsync(DAL.Entities.Task task)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteTaskAsync(TaskDTO taskDto)
+        public Task DeleteTaskAsync(DAL.Entities.Task task)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TaskDTO> GetTaskByIdAsync(int id)
+        public Task<DAL.Entities.Task> GetTaskByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<TaskDTO>> GetProjectTasksAsync(int projectId)
+        public Task<IEnumerable<DAL.Entities.Task>> GetProjectTasksAsync(int projectId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<TaskDTO>> GetAllTasksAsync()
+        public Task<IEnumerable<DAL.Entities.Task>> GetAllTasksAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<TaskDTO>> FindTasksAsync(Func<TaskDTO, bool> predicate)
+        public Task<IEnumerable<DAL.Entities.Task>> FindTasksAsync(Func<DAL.Entities.Task, bool> predicate)
         {
             throw new NotImplementedException();
         }

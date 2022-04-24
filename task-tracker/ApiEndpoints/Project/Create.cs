@@ -4,14 +4,13 @@ using Ardalis.ApiEndpoints;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using task_tracker.ApiEndpoints.Project.Requests;
-using task_tracker.BLL.DTOs;
 using task_tracker.BLL.Interfaces;
 
 namespace task_tracker.ApiEndpoints.Project
 {
-    public class CreateProject : EndpointBaseAsync.WithRequest<Request.CreateProject>.WithResult<
-        ActionResult<Response.CreateProjectResponse>>
+    public class CreateProject : EndpointBaseAsync
+        .WithRequest<Request.Create>
+        .WithResult< ActionResult<Response.Create> >
     {
         private readonly IProjectService _projectService;
         private readonly IMapper _mapper;
@@ -29,18 +28,9 @@ namespace task_tracker.ApiEndpoints.Project
             OperationId = "Projects.Create",
             Tags = new[] { "Projects" })
         ]
-        public override async  Task<ActionResult<Response.CreateProjectResponse>> HandleAsync(Request.CreateProject request, CancellationToken cancellationToken = new CancellationToken())
+        public override async  Task<ActionResult<Response.Create>> HandleAsync(Request.Create request, CancellationToken cancellationToken = new CancellationToken())
         {
-            if (ModelState.IsValid)
-            {
-                var project = _mapper.Map<ProjectDTO>(request);
-                
-                var result = await _projectService.CreateProjectAsync(new ProjectDTO()
-                {
-                    
-                });
-                return Ok();
-            }
+            
 
             return BadRequest("Something was wrong");
         }

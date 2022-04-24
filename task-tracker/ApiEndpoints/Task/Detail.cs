@@ -7,9 +7,9 @@ using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
 
 
-namespace task_tracker.ApiEndpoints.Project.Requests
+namespace task_tracker.ApiEndpoints.Task
 {
-    public class ViewDetail:EndpointBaseAsync.WithRequest<int>.WithResult<ActionResult<Task.Response.ViewDetail>>
+    public class ViewDetail:EndpointBaseAsync.WithRequest<int>.WithResult<ActionResult<Response.Detail>>
     {
         private readonly ITaskService _taskService;
 
@@ -24,20 +24,12 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             OperationId = "Task.ViewDetail",
             Tags = new[] { "Tasks" })
         ]
-        public override async Task<ActionResult<Task.Response.ViewDetail>> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<ActionResult<Response.Detail>> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
         {
            
             var task = await _taskService.GetTaskByIdAsync(id);
             if (task != null)
-                return Ok(new Task.Response.ViewDetail()
-                {
-                    // Id   = task.Id,
-                    // Name = task.Name,
-                    // Description = task.Description,
-                    // Priority = task.Priority,
-                    // ProjectId = task.ProjectId,
-                    // TaskStatus = task.TaskStatus.ToString()
-                });
+                return Ok();
             return BadRequest("Something was wrong");
         }
     }

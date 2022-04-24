@@ -35,9 +35,9 @@ namespace task_tracker.DAL.Repositories
             return dbSet.Where(predicate).ToList();
         }
 
-        public virtual async Task Create(T item)
+        public virtual async Task<T> Create(T item)
         {
-            await dbSet.AddAsync(item);
+            return  (await dbSet.AddAsync(item)).Entity;
         }
 
         public virtual async Task Update(T item)

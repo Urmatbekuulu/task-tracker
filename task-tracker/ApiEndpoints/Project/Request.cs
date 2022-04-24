@@ -6,7 +6,7 @@ namespace task_tracker.ApiEndpoints.Project
 {
     public class Request
     {
-        public class CreateProject
+        public class Create
         {
             [Required]
             public string Name { get; set; }
@@ -19,18 +19,18 @@ namespace task_tracker.ApiEndpoints.Project
             [Required]
             public int Priority { get; set; }
         }
-        public class DeleteProject
+        public class Delete
         {
             [Required,Range(1,Int32.MaxValue)]
             public int Id { get; set; }
         }
-        public class ViewDetail
+        public class View
         {
             [Required,Range(1,Int32.MaxValue)]
             public int Id { get; set; }
         }
 
-        public class UpdateProject
+        public class Update
         {
             public int Id { get; set; }
             public string Name { get; set; }

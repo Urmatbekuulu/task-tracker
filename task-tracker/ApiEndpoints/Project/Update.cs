@@ -1,24 +1,22 @@
-﻿
-
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using task_tracker.ApiEndpoints.Project;
-using task_tracker.ApiEndpoints.Project.Requests;
-using task_tracker.BLL.DTOs;
 using task_tracker.BLL.Interfaces;
 
-namespace task_tracker.ApiEndpoints
+namespace task_tracker.ApiEndpoints.Project
 {
-    public class UpdateProject:EndpointBaseAsync.WithRequest<Request.UpdateProject>.WithResult<int>
+    public class Update:EndpointBaseAsync.WithRequest<Request.Update>.WithResult<ActionResult<Response.Update>>
     {
         private readonly IProjectService _projectService;
+        private readonly IMapper _mapper;
 
-        public UpdateProject(IProjectService projectService)
+        public Update(IProjectService projectService,IMapper mapper)
         {
             _projectService = projectService;
+            _mapper = mapper;
         }
         
         [HttpPut("api/project/update")]
@@ -28,10 +26,10 @@ namespace task_tracker.ApiEndpoints
             OperationId = "Projects.Updated",
             Tags = new[] { "Projects" })
         ]
-        public override async Task<int> HandleAsync(Request.UpdateProject request, CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<ActionResult<Response.Update>> HandleAsync(Request.Update request, CancellationToken cancellationToken = new CancellationToken())
         {
-             _projectService.UpdateProjectAsync(new ProjectDTO(){});
-             return 0;
+
+            return BadRequest();
         }
     }
 }

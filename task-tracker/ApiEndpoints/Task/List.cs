@@ -8,9 +8,9 @@ using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
 
 
-namespace task_tracker.ApiEndpoints.Project.Requests
+namespace task_tracker.ApiEndpoints.Task
 {
-    public class ViewAll:EndpointBaseAsync.WithoutRequest.WithResult<ActionResult<IEnumerable<Task.Response.ViewAllTask>>>
+    public class ViewAll:EndpointBaseAsync.WithoutRequest.WithResult<ActionResult<IEnumerable<Response.List>>>
     {
         private readonly ITaskService _taskService;
 
@@ -25,17 +25,10 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             OperationId = "Task.ViewAll",
             Tags = new[] { "Tasks" })
         ]
-        public override async Task<ActionResult<IEnumerable<Task.Response.ViewAllTask>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<ActionResult<IEnumerable<Response.List>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var result = await _taskService.GetAllTasksAsync();
-            return Ok(result.Select(t => new Task.Response.ViewAllTask()
-            {
-                // Name = t.Name,
-                // Id = t.Id,
-                // ProjectId = t.Id,
-                // TaskStatus = t.TaskStatus.ToString()
-
-            }).ToList());
+            return Ok();
         }
     }
 }

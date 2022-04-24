@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using task_tracker.BLL.DTOs;
-using task_tracker.DAL.Enums;
-using Task = task_tracker.DAL.Entities.Task;
+using task_tracker.DAL.Entities;
+using Task = System.Threading.Tasks.Task;
 
 namespace task_tracker.BLL.Interfaces
 {
@@ -12,12 +11,12 @@ namespace task_tracker.BLL.Interfaces
     {   
         //business operation interfaces with projects
         
-        Task<ProjectDTO> CreateProjectAsync(ProjectDTO projectDto);
-        Task UpdateProjectAsync(ProjectDTO projectDto);
+        Task<Project> CreateProjectAsync(Project projectDto);
+        Task UpdateProjectAsync(Project projectDto);
         Task DeleteProjectByIdAsync(int id);
-        Task<ProjectDTO> GetProjectByIdAsync(int id);
-        Task<IEnumerable<ProjectDTO>> GetProjectsAsync();
-        Task<IEnumerable<ProjectDTO>> FindProjectsAsync(Func<ProjectDTO,bool> predicate);
+        Task<Project> GetProjectByIdAsync(int id);
+        Task<IEnumerable<Project>> GetProjectsAsync();
+        Task<IEnumerable<Project>> FindProjectsAsync(Func<Project,bool> predicate);
 
 
     }

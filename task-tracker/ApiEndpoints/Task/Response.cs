@@ -5,10 +5,9 @@ namespace task_tracker.ApiEndpoints.Task
 {
     public class Response
     {
-        public class CreatedTask
+        public class Create
         {
-            [Required]
-            public int Id { get; set; }
+          
             [Required]
             public string Name { get; set; }
             [Required]
@@ -20,7 +19,7 @@ namespace task_tracker.ApiEndpoints.Task
             [Required]
             public int ProjectId { get; set; }
         }
-        public class ViewAllTask
+        public class List
         {
             [Required]
             public int Id { get; set; }
@@ -31,7 +30,11 @@ namespace task_tracker.ApiEndpoints.Task
             [Required]
             public int ProjectId { get; set; }
         }
-        public class ViewDetail:CreatedTask
+        public class Detail
+        {
+            
+        }
+        public class Update
         {
             
         }

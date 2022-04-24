@@ -10,7 +10,7 @@ namespace task_tracker.DAL.Interfaces
         Task<IEnumerable<T>> GetAll();
         Task<T> GetById(int id);
         Task<IEnumerable<T>> Find(Func<T, Boolean> predicate);
-        Task Create(T item);
+        Task<T> Create(T item);
         Task Update(T item);
         Task Delete(int id);
         

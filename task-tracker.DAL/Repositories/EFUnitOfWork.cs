@@ -29,6 +29,7 @@ namespace task_tracker.DAL.Repositories
         public void Dispose()
         {
             _dbContext.Dispose();
+            
         }
 
         public async Task SaveAsync()

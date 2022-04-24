@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using task_tracker.BLL.DTOs;
 
-namespace task_tracker.ApiEndpoints.Project.Requests
+namespace task_tracker.ApiEndpoints.Project
 {
     public class Response
     {
-        public class CreateProjectResponse
+        public class Create
         {
            
         }
        
-        public class ViewAll
+        public class List
         {
             public int Id { get; set; }
             public string Name { get; set; }
@@ -19,7 +18,7 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             public string ProjectStatus { get; set; }
             
         }
-        public class ViewDetailly
+        public class Detail
         {
             public string Name { get; set; }
             public int Id { get; set; }
@@ -27,7 +26,12 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             public string ProjectStatus { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime CompletionDate { get; set; }
-            public ICollection<TaskDTO> Tasks { get; set; }
+            public ICollection<DAL.Entities.Task> Tasks { get; set; }
+        }
+
+        public class Update
+        {
+            
         }
     
 

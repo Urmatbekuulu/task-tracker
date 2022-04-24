@@ -6,7 +6,7 @@ namespace task_tracker.ApiEndpoints.Task
 {
     public class Request
     {
-        public class CreateTask
+        public class Create
         {
             [Required]
             public string Name { get; set; }
@@ -20,9 +20,21 @@ namespace task_tracker.ApiEndpoints.Task
             public int ProjectId { get; set; }
             
         }
-        public class UpdateTask:CreateTask
+        public class Update:Create
         {
             public int Id { get; set; }
+        }
+        public class Delete
+        {
+            
+        }
+        public class List
+        {
+            
+        }
+        public class Detail
+        {
+            
         }
         
 
