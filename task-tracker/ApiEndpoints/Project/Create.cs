@@ -32,9 +32,9 @@ namespace task_tracker.ApiEndpoints.Project
         public override async  Task<ActionResult<Response.Create>> HandleAsync(Request.Create request, CancellationToken cancellationToken = new CancellationToken())
         {
             var project = _mapper.Map<Entities.Project>(request);
-            await _projectService.CreateProjectAsync(project);
-
-            return _mapper.Map<Response.Create>(project);
+            var result = await _projectService.CreateProjectAsync(project);
+            
+            return _mapper.Map<Response.Create>(result);
         }
     
     }

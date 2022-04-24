@@ -9,6 +9,7 @@ namespace task_tracker.ApiEndpoints.Project
     {
         public class Create
         {
+            public int Id { get; set; }
             [Required]
             public string Name { get; set; }
             [Required]
@@ -37,7 +38,7 @@ namespace task_tracker.ApiEndpoints.Project
             public string ProjectStatus { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime CompletionDate { get; set; }
-            public ICollection<DAL.Entities.Task> Tasks { get; set; }
+            public ICollection<Task.Response.List> Tasks { get; set; }
         }
 
         public class Update

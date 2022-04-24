@@ -16,7 +16,7 @@ namespace task_tracker.ApiEndpoints.Project
         {
             _projectService = projectService;
         }
-        [HttpDelete("api/project/delete/{id:int}")]
+        [HttpDelete("api/project/delete/{id:int:min(1)}")]
         [SwaggerOperation(
             Summary = "Delete project",
             Description = "Deletes project by id",
@@ -25,10 +25,10 @@ namespace task_tracker.ApiEndpoints.Project
         ]
         public override async Task<ActionResult<int>> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
         {
+            var project = await _projectService.GetProjectByIdAsync(id);
+            if(project.Id < 1) return BadRequest("Something was wrong");
             
-            if(id<1) return BadRequest("Something was wrong");
-            
-           await _projectService.DeleteProjectByIdAsync(id);
+            await _projectService.DeleteProjectByIdAsync(id);
           
             return Ok("deleted successfully");
             
