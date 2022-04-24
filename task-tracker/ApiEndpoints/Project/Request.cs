@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using task_tracker.DAL.Enums;
 using task_tracker.Enums;
 
 namespace task_tracker.ApiEndpoints.Project
@@ -15,7 +16,7 @@ namespace task_tracker.ApiEndpoints.Project
             [Required]
             public DateTime CompletionDate { get; set; }
             [Required]
-            public string ProjectStatus { get; set; }
+            public ProjectStatus ProjectStatus { get; set; }
             [Required]
             public int Priority { get; set; }
         }

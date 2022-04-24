@@ -28,9 +28,9 @@ namespace task_tracker.ApiEndpoints.Project
             
             if(id<1) return BadRequest("Something was wrong");
             
-            _projectService.DeleteProjectByIdAsync(id);
+           await _projectService.DeleteProjectByIdAsync(id);
           
-            return Ok();
+            return Ok("deleted successfully");
             
         }
     }

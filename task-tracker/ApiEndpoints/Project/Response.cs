@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using task_tracker.DAL.Enums;
 
 namespace task_tracker.ApiEndpoints.Project
 {
@@ -7,7 +9,16 @@ namespace task_tracker.ApiEndpoints.Project
     {
         public class Create
         {
-           
+            [Required]
+            public string Name { get; set; }
+            [Required]
+            public DateTime StartDate { get; set; }
+            [Required]
+            public DateTime CompletionDate { get; set; }
+            [Required]
+            public ProjectStatus ProjectStatus { get; set; }
+            [Required]
+            public int Priority { get; set; }
         }
        
         public class List

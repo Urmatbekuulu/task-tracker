@@ -31,6 +31,7 @@ namespace task_tracker
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "task_tracker", Version = "v1" });
                 c.EnableAnnotations();
+                c.CustomSchemaIds(type =>type.ToString());
             });
             
             //Add Business layer services
