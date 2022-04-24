@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
+using Entities = task_tracker.DAL.Entities;
 
 namespace task_tracker.ApiEndpoints.Project
 {
@@ -30,9 +31,10 @@ namespace task_tracker.ApiEndpoints.Project
         ]
         public override async  Task<ActionResult<Response.Create>> HandleAsync(Request.Create request, CancellationToken cancellationToken = new CancellationToken())
         {
-            
+            var project = _mapper.Map<Entities.Project>(request);
+            await _projectService.CreateProjectAsync(project);
 
-            return BadRequest("Something was wrong");
+            return _mapper.Map<Response.Create>(project);
         }
     
     }
