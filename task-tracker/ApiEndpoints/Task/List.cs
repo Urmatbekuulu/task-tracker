@@ -28,7 +28,7 @@ namespace task_tracker.ApiEndpoints.Task
         public override async Task<ActionResult<IEnumerable<Response.List>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var result = await _taskService.GetAllTasksAsync();
-            return Ok();
+            return Ok(result);
         }
     }
 }

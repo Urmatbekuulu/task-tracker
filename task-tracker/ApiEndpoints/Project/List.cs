@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
@@ -29,7 +30,7 @@ namespace task_tracker.ApiEndpoints.Project
         ]
         public override async Task<ActionResult<IEnumerable<Response.List>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            var list =  await _projectService.GetProjectsAsync();
+            var list = (await _projectService.GetProjectsAsync()).Select(x => _mapper.Map<Response.List>(x));
             
             return Ok(list);
         }

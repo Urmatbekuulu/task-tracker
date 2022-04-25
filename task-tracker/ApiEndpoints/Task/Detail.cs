@@ -28,9 +28,7 @@ namespace task_tracker.ApiEndpoints.Task
         {
            
             var task = await _taskService.GetTaskByIdAsync(id);
-            if (task != null)
-                return Ok();
-            return BadRequest("Something was wrong");
+            return Ok();
         }
     }
 }

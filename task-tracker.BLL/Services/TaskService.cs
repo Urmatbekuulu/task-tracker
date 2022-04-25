@@ -28,7 +28,7 @@ namespace task_tracker.BLL.Services
             throw new NotImplementedException();
         }
 
-        public Task DeleteTaskAsync(DAL.Entities.Task task)
+        public Task DeleteTaskAsync(int id)
         {
             throw new NotImplementedException();
         }

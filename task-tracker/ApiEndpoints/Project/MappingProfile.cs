@@ -10,6 +10,9 @@ namespace task_tracker.ApiEndpoints.Project
             CreateMap<Entities.Project, Response.Create>();
 
             CreateMap<Entities.Project, Response.Detail>();
+            CreateMap<Entities.Project, Response.List>();
+
+            CreateMap<Request.Update, Entities.Project>();
         }
     }
 }

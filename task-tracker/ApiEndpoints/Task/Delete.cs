@@ -4,17 +4,20 @@ using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
+using task_tracker.DAL.Data;
 
 
 namespace task_tracker.ApiEndpoints.Project.Requests
 {
-    public class DeleteTask:EndpointBaseAsync.WithRequest<int>.WithResult<ActionResult<int>>
+    public class DeleteTask:EndpointBaseAsync.WithRequest<Request.Delete>.WithResult<ActionResult>
     {
         private readonly ITaskService _taskService;
+        private readonly ApplicationDbContext _dbContext;
 
-        public DeleteTask(ITaskService taskService)
+        public DeleteTask(ITaskService taskService,ApplicationDbContext dbContext)
         {
             _taskService = taskService;
+            _dbContext = dbContext;
         }
         [HttpDelete("api/task/delete/{id:int}")]
         [SwaggerOperation(
@@ -23,9 +26,11 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             OperationId = "Task.Delete",
             Tags = new[] { "Tasks" })
         ]
-        public override Task<ActionResult<int>> HandleAsync(int request, CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<ActionResult> HandleAsync(Request.Delete request, CancellationToken cancellationToken = new CancellationToken())
         {
-            throw new System.NotImplementedException();
+            await _taskService.DeleteTaskAsync(request.Id);
+            await _dbContext.SaveChangesAsync();
+            return Ok();
         }
     }
 }

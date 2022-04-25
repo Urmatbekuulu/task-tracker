@@ -34,7 +34,7 @@ namespace task_tracker.ApiEndpoints.Task
         }
         public class Detail
         {
-            
+            public int Id { get; set; }
         }
         
 

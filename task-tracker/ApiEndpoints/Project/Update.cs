@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
+using task_tracker.DAL.Data;
 
 namespace task_tracker.ApiEndpoints.Project
 {
@@ -12,11 +13,13 @@ namespace task_tracker.ApiEndpoints.Project
     {
         private readonly IProjectService _projectService;
         private readonly IMapper _mapper;
+        private readonly ApplicationDbContext _context;
 
-        public Update(IProjectService projectService,IMapper mapper)
+        public Update(IProjectService projectService,IMapper mapper,ApplicationDbContext context)
         {
             _projectService = projectService;
             _mapper = mapper;
+            _context = context;
         }
         
         [HttpPut("api/project/update")]
@@ -28,8 +31,10 @@ namespace task_tracker.ApiEndpoints.Project
         ]
         public override async Task<ActionResult<Response.Update>> HandleAsync(Request.Update request, CancellationToken cancellationToken = new CancellationToken())
         {
-
-            return BadRequest();
+            var project = _mapper.Map<DAL.Entities.Project>(request); 
+            await _projectService.UpdateProjectAsync(project);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
     }
 }
