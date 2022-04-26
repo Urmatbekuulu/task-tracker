@@ -9,9 +9,9 @@ using Task = System.Threading.Tasks.Task;
 
 namespace task_tracker.DAL.Repositories
 {
-    public class ProjectRepository:GenericRepository<Project>,IProjectRepository
+    public class ProjectRepository:GenericRepository<Project>,IProjectRepository,IGenericRepository<Project>
     {
-        public ProjectRepository(ApplicationDbContext dbContext,ILogger logger):base(dbContext,logger)
+        public ProjectRepository(ApplicationDbContext dbContext):base(dbContext)
         {
         }
         

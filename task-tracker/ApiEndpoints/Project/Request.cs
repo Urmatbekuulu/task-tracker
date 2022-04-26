@@ -25,11 +25,7 @@ namespace task_tracker.ApiEndpoints.Project
             [Required,Range(1,Int32.MaxValue)]
             public int Id { get; set; }
         }
-        public class View
-        {
-            [Required,Range(1,Int32.MaxValue)]
-            public int Id { get; set; }
-        }
+        
 
         public class Update
         {
@@ -37,7 +33,7 @@ namespace task_tracker.ApiEndpoints.Project
             public string Name { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime CompletionDate { get; set; }
-            public string ProjectStatus { get; set; }
+            public ProjectStatus ProjectStatus { get; set; }
             public int Priority { get; set; }
         }
     }

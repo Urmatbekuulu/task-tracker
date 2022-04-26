@@ -7,12 +7,12 @@ namespace task_tracker.DAL.Interfaces
 {
     public interface IGenericRepository<T> where T:class
     {
-        Task<IEnumerable<T>> GetAll();
-        Task<T> GetById(int id);
-        Task<IEnumerable<T>> Find(Func<T, Boolean> predicate);
-        Task<T> Create(T item);
-        Task Update(T item);
-        Task Delete(int id);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T> GetByIdAsync(int id);
+        Task<IEnumerable<T>> FindAsync(Func<T, Boolean> predicate);
+        Task<T> CreateAsync(T item);
+        Task UpdateAsync(T item);
+        Task DeleteByIdAsync(int id);
         
     }
 }

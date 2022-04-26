@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using AutoMapper;
@@ -6,18 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
 using task_tracker.DAL.Data;
+using task_tracker.DAL.Interfaces;
 
 namespace task_tracker.ApiEndpoints.Project
 {
     public class Update:EndpointBaseAsync.WithRequest<Request.Update>.WithResult<ActionResult<Response.Update>>
     {
-        private readonly IProjectService _projectService;
+        private readonly IProjectRepository _projectRepository;
         private readonly IMapper _mapper;
         private readonly ApplicationDbContext _context;
 
-        public Update(IProjectService projectService,IMapper mapper,ApplicationDbContext context)
+        public Update(IProjectRepository projectRepository,IMapper mapper,ApplicationDbContext context)
         {
-            _projectService = projectService;
+            _projectRepository = projectRepository;
             _mapper = mapper;
             _context = context;
         }
@@ -31,8 +33,8 @@ namespace task_tracker.ApiEndpoints.Project
         ]
         public override async Task<ActionResult<Response.Update>> HandleAsync(Request.Update request, CancellationToken cancellationToken = new CancellationToken())
         {
-            var project = _mapper.Map<DAL.Entities.Project>(request); 
-            await _projectService.UpdateProjectAsync(project);
+            var project = _mapper.Map<DAL.Entities.Project>(request);
+            await _projectRepository.UpdateAsync(project);
             await _context.SaveChangesAsync();
             return Ok();
         }

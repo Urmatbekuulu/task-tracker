@@ -7,18 +7,19 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
+using task_tracker.DAL.Interfaces;
 
 
 namespace task_tracker.ApiEndpoints.Project
 {
-    public class List:EndpointBaseAsync.WithoutRequest.WithResult<ActionResult<IEnumerable<Response.List>>>
+    public class List:EndpointBaseAsync.WithoutRequest.WithResult<ActionResult<List<Response.List>>>
     {
-        private readonly IProjectService _projectService;
+        private readonly IProjectRepository _projectRepository;
         private readonly IMapper _mapper;
 
-        public List(IProjectService projectService,IMapper mapper)
+        public List(IProjectRepository projectRepository,IMapper mapper)
         {
-            _projectService = projectService;
+            _projectRepository = projectRepository;
             _mapper = mapper;
         }
         [HttpGet("api/project/view")]
@@ -28,11 +29,12 @@ namespace task_tracker.ApiEndpoints.Project
             OperationId = "Projects.View",
             Tags = new[] { "Projects" })
         ]
-        public override async Task<ActionResult<IEnumerable<Response.List>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<ActionResult<List<Response.List>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            var list = (await _projectService.GetProjectsAsync()).Select(x => _mapper.Map<Response.List>(x));
-            
-            return Ok(list);
+            var list = (await _projectRepository.GetAllAsync());
+            var response = _mapper.Map<List<Response.List>>(list);
+
+            return response;
         }
     }
 }

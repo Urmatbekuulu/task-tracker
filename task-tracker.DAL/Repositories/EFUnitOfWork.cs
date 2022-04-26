@@ -21,8 +21,8 @@ namespace task_tracker.DAL.Repositories
             _dbContext = dbContext;
             _logger = loggerFactory.CreateLogger("logs");
 
-            Projects = new ProjectRepository(dbContext:dbContext,logger:_logger);
-            Tasks = new TaskRepository(dbContext: dbContext, logger: _logger);
+            Projects = new ProjectRepository(dbContext:dbContext);
+            Tasks = new TaskRepository(dbContext: dbContext);
         }
         
         

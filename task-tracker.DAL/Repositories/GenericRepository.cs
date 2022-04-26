@@ -11,43 +11,41 @@ namespace task_tracker.DAL.Repositories
 {
     public class GenericRepository<T>:IGenericRepository<T> where T:class
     {
-        private readonly ILogger _logger;
         private DbSet<T> dbSet;
 
-        public GenericRepository(ApplicationDbContext context,ILogger logger)
+        public GenericRepository(ApplicationDbContext context)
         {
-            _logger = logger;
             dbSet = context.Set<T>();
         }
 
-        public virtual async Task<IEnumerable<T>> GetAll()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await dbSet.ToListAsync();
         }
 
-        public virtual async Task<T> GetById(int id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             return await dbSet.FindAsync(id);
         }
 
-        public virtual async Task<IEnumerable<T>> Find(Func<T,bool> predicate)
+        public virtual async Task<IEnumerable<T>> FindAsync(Func<T,bool> predicate)
         {
-            return dbSet.Where(predicate).ToList();
+           return dbSet.Where(predicate);
         }
 
-        public virtual async Task<T> Create(T item)
+        public virtual async Task<T> CreateAsync(T item)
         {
             return  (await dbSet.AddAsync(item)).Entity;
         }
 
-        public virtual async Task Update(T item)
+        public virtual async Task UpdateAsync(T item)
         {
              dbSet.Update(item);
         }
 
-        public virtual async Task Delete(int id)
+        public virtual async Task DeleteByIdAsync(int id)
         {
-            var result = await GetById(id);
+            var result = await GetByIdAsync(id);
             dbSet.Remove(result);
         }
     }

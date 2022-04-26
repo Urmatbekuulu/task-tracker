@@ -7,10 +7,10 @@ using task_tracker.DAL.Interfaces;
 
 namespace task_tracker.DAL.Repositories
 {
-    public class TaskRepository:GenericRepository<Task>,ITaskRepository
+    public class TaskRepository:GenericRepository<Task>,ITaskRepository,IGenericRepository<Task>
     {
 
-        public TaskRepository(ApplicationDbContext dbContext,ILogger logger):base(dbContext,logger)
+        public TaskRepository(ApplicationDbContext dbContext):base(dbContext)
         {
            
         }

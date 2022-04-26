@@ -3,20 +3,24 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
+using task_tracker.DAL.Interfaces;
 
 
 namespace task_tracker.ApiEndpoints.Task
 {
     public class ViewAll:EndpointBaseAsync.WithoutRequest.WithResult<ActionResult<IEnumerable<Response.List>>>
     {
-        private readonly ITaskService _taskService;
+        private readonly ITaskRepository _taskRepository;
+        private readonly IMapper _mapper;
 
-        public ViewAll(ITaskService taskService)
+        public ViewAll(ITaskRepository taskRepository,IMapper mapper)
         {
-            _taskService = taskService;
+            _mapper = mapper;
+            _taskRepository = taskRepository;
         }
         [HttpGet("api/task/view")]
         [SwaggerOperation(
@@ -27,8 +31,11 @@ namespace task_tracker.ApiEndpoints.Task
         ]
         public override async Task<ActionResult<IEnumerable<Response.List>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            var result = await _taskService.GetAllTasksAsync();
-            return Ok(result);
+            var result = (await _taskRepository.GetAllAsync());
+            return Ok(_mapper.Map<IEnumerable<Response.List>>(result));
+
+
+
         }
     }
 }

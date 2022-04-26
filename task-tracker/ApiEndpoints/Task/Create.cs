@@ -1,23 +1,30 @@
-﻿using System.Threading;
+﻿using System.Net.Mime;
+using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
+using task_tracker.DAL.Data;
+using task_tracker.DAL.Interfaces;
 
 
 namespace task_tracker.ApiEndpoints.Task
 {
     public class CreateTask:EndpointBaseAsync.WithRequest<Request.Create>.WithResult<ActionResult<Response.Create>>
     {
-        private readonly ITaskService _taskService;
+        private readonly ITaskRepository _taskRepository;
         private readonly IMapper _mapper;
+        private readonly ApplicationDbContext _dbContext;
 
-        public CreateTask(ITaskService taskService,IMapper mapper)
+        public CreateTask(ITaskRepository taskRepository,IMapper mapper,ApplicationDbContext dbContext)
         {
-            _taskService = taskService;
+            _taskRepository = taskRepository;
             _mapper = mapper;
+            _dbContext = dbContext;
         }
         
         [HttpPost("api/task/create")]
@@ -31,15 +38,19 @@ namespace task_tracker.ApiEndpoints.Task
         {
             if (!IsRequestValid(request)) return BadRequest("error");
             var task = _mapper.Map<DAL.Entities.Task>(request);
-            await _taskService.CreateTaskAsync(task);
-            
-            return Ok();
+            var result =  await _dbContext.Tasks.AddAsync(task);
+            await _dbContext.SaveChangesAsync();
+            task =await _taskRepository.GetByIdAsync(result.Entity.Id);
+
+            return _mapper.Map<Response.Create>(task);
+
         }
 
         private bool IsRequestValid(Request.Create request)
         {
-            // there will be any validation operations to check
-            return request.ProjectId>0;
+            
+            var isProjectExists =  _dbContext.Projects.Find(request.ProjectId);
+            return isProjectExists is not null;
         }
         
     }

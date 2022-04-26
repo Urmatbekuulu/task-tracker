@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using task_tracker.DAL.Data;
+using task_tracker.DAL.Entities;
 using task_tracker.DAL.Interfaces;
 using task_tracker.DAL.Repositories;
 
@@ -15,8 +16,9 @@ namespace task_tracker.DAL
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
-            //add unit of pattern service 
-            services.AddScoped<IUnitOfWork, EFUnitOfWork>();
+            
+            services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
 
         }
     }

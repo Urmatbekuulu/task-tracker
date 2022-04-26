@@ -5,18 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
 using task_tracker.DAL.Data;
+using task_tracker.DAL.Interfaces;
 
 
 namespace task_tracker.ApiEndpoints.Project.Requests
 {
     public class DeleteTask:EndpointBaseAsync.WithRequest<Request.Delete>.WithResult<ActionResult>
     {
-        private readonly ITaskService _taskService;
+        private readonly ITaskRepository _taskRepository;
         private readonly ApplicationDbContext _dbContext;
 
-        public DeleteTask(ITaskService taskService,ApplicationDbContext dbContext)
+        public DeleteTask(ITaskRepository taskRepository,ApplicationDbContext dbContext)
         {
-            _taskService = taskService;
+            _taskRepository = taskRepository;
             _dbContext = dbContext;
         }
         [HttpDelete("api/task/delete/{id:int}")]
@@ -28,9 +29,9 @@ namespace task_tracker.ApiEndpoints.Project.Requests
         ]
         public override async Task<ActionResult> HandleAsync(Request.Delete request, CancellationToken cancellationToken = new CancellationToken())
         {
-            await _taskService.DeleteTaskAsync(request.Id);
+            await _taskRepository.DeleteByIdAsync(request.Id);
             await _dbContext.SaveChangesAsync();
-            return Ok();
+            return Ok(); 
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
@@ -6,19 +7,20 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
+using task_tracker.DAL.Interfaces;
 
 namespace task_tracker.ApiEndpoints.Project
 {
     public class ViewDetail:EndpointBaseAsync.WithRequest<int>.WithResult<ActionResult<Response.Detail>>
     {
-        private readonly IProjectService _projectService;
-        private readonly ITaskService _taskService;
+        private readonly IProjectRepository _projectRepository;
+        private readonly ITaskRepository _taskRepository;
         private readonly IMapper _mapper;
 
-        public ViewDetail(IProjectService projectService,ITaskService taskService,IMapper mapper)
+        public ViewDetail(IProjectRepository projectRepository,ITaskRepository taskRepository,IMapper mapper)
         {
-            _projectService = projectService;
-            _taskService = taskService;
+            _projectRepository = projectRepository;
+            _taskRepository = taskRepository;
             _mapper = mapper;
         }
         [HttpGet("api/project/view/{id:int:min(1)}")]
@@ -30,14 +32,16 @@ namespace task_tracker.ApiEndpoints.Project
         ]
         public override async Task<ActionResult<Response.Detail>> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
         {
-            var project =await _projectService.GetProjectByIdAsync(id);
-            var response = _mapper.Map<Project.Response.Detail>(project);
+            var project =await _projectRepository.GetByIdAsync(id);
+            if (project is null) return BadRequest("not found");
+            
+            var response = _mapper.Map<Response.Detail>(project);
 
-            var taskResult = (await _taskService.FindTasksAsync(t => t.Id == response.Id))
-                .Select(x=>_mapper.Map<Task.Response.List>(x))
-                .ToList();
+            var tasks = (await _taskRepository.GetAllAsync()).Where(x => x.ProjectId == id);
 
-            return Ok(taskResult);
+            response.Tasks = _mapper.Map<ICollection<Task.Response.List>>(tasks);
+            
+            return response;
         }
     }
 }
