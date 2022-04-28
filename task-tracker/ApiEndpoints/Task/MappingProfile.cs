@@ -9,7 +9,6 @@ namespace task_tracker.ApiEndpoints.Task
             CreateMap<DAL.Entities.Task, Response.List>();
 
             CreateMap<Request.Create, DAL.Entities.Task>();
-
             CreateMap<DAL.Entities.Task, Response.Create>();
             CreateMap<DAL.Entities.Task, Response.List>();
             CreateMap<Request.Update,DAL.Entities.Task>();

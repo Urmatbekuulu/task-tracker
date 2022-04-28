@@ -12,6 +12,12 @@ namespace task_tracker.ApiEndpoints.Project
             [Required]
             public string Name { get; set; }
             [Required]
+            public string CustomerName { get; set; }
+            [Required]
+            public string PerformingCompany { get; set; }
+            [Required]
+            public int SupervisorId { get; set; }
+            [Required]
             public DateTime StartDate { get; set; }
             [Required]
             public DateTime CompletionDate { get; set; }
