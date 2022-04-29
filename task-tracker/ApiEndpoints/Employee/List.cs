@@ -27,7 +27,7 @@ namespace task_tracker.ApiEndpoints.Employee
             Summary = "List of Employees",
             Description = "Gets all List of Employees",
             OperationId ="Employee.List",
-            Tags = new []{"Employee","View"})]
+            Tags = new []{"Employee"})]
         public override async Task<ActionResult<List<Response.List>>> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
         {
            var employees = await _dbContext.Employees.ToListAsync();

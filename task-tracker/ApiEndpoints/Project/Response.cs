@@ -38,7 +38,10 @@ namespace task_tracker.ApiEndpoints.Project
             public string ProjectStatus { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime CompletionDate { get; set; }
+
+            public Employee.Response.List Supervisor { get; set; }
             public ICollection<Task.Response.List> Tasks { get; set; }
+            public List<Employee.Response.List> Employees { get; set; }
         }
 
         public class Update

@@ -10,8 +10,8 @@ using task_tracker.DAL.Data;
 namespace task_tracker.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220426221655_AddEmployeeMigration")]
-    partial class AddEmployeeMigration
+    [Migration("20220429185658_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,7 +60,7 @@ namespace task_tracker.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employee");
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("task_tracker.DAL.Entities.Project", b =>
@@ -109,6 +109,9 @@ namespace task_tracker.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -116,6 +119,9 @@ namespace task_tracker.DAL.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PerformerId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Priority")
                         .HasColumnType("int");
@@ -127,6 +133,12 @@ namespace task_tracker.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("PerformerId");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("Tasks");
                 });
@@ -144,6 +156,45 @@ namespace task_tracker.DAL.Migrations
                         .HasForeignKey("ProjectsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("task_tracker.DAL.Entities.Task", b =>
+                {
+                    b.HasOne("task_tracker.DAL.Entities.Employee", "Author")
+                        .WithMany("CreatedTasks")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("task_tracker.DAL.Entities.Employee", "Performer")
+                        .WithMany("ToDoTasks")
+                        .HasForeignKey("PerformerId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("task_tracker.DAL.Entities.Project", "Project")
+                        .WithMany("Tasks")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Performer");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("task_tracker.DAL.Entities.Employee", b =>
+                {
+                    b.Navigation("CreatedTasks");
+
+                    b.Navigation("ToDoTasks");
+                });
+
+            modelBuilder.Entity("task_tracker.DAL.Entities.Project", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

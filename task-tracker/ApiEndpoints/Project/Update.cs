@@ -33,10 +33,20 @@ namespace task_tracker.ApiEndpoints.Project
         ]
         public override async Task<ActionResult<Response.Update>> HandleAsync(Request.Update request, CancellationToken cancellationToken = new CancellationToken())
         {
+            if (!(await IsValidForUpdate(request.Id))) return BadRequest("Project not available for update");
+                
             var project = _mapper.Map<DAL.Entities.Project>(request);
-            await _projectRepository.UpdateAsync(project);
+            _context.Projects.Update(project);
             await _context.SaveChangesAsync();
             return Ok();
+        }
+
+        private async Task<bool> IsValidForUpdate(int id)
+        {
+            if (id < 1) return false;
+
+
+            return true;
         }
     }
 }

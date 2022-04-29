@@ -28,13 +28,18 @@ namespace task_tracker.ApiEndpoints.Employee
             Summary = "Update Employee",
             Description = "Updates employee",
             OperationId = "Employee.Update",
-            Tags = new []{"Employee","Update"}
+            Tags = new []{"Employee"}
             )]
         public override async Task<ActionResult<Response.Update>> HandleAsync(Request.Update request, CancellationToken cancellationToken = new CancellationToken())
         {
             var employee = _mapper.Map<DAL.Entities.Employee>(request);
             if (!(await IsValid(employee))) return BadRequest("Something went wrong");
+            var realemp =await _dbContext.Employees.FindAsync(employee.Id);
+
+            if (realemp is null) return BadRequest("Unable to update");
+
             _dbContext.Employees.Update(employee);
+            
             await _dbContext.SaveChangesAsync();
             
             return Ok("Success");
@@ -47,7 +52,6 @@ namespace task_tracker.ApiEndpoints.Employee
         /// <returns></returns>
         private async Task<bool> IsValid(DAL.Entities.Employee? employee)
         {
-
             if (employee == null || employee?.Id < 1) return false;
             return true;
         }

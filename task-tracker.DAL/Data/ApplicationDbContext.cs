@@ -1,6 +1,8 @@
-﻿using System.Xml.Serialization;
+﻿using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Microsoft.EntityFrameworkCore;
 using task_tracker.DAL.Entities;
+using Task = task_tracker.DAL.Entities.Task;
 
 
 namespace task_tracker.DAL.Data
@@ -13,6 +15,19 @@ namespace task_tracker.DAL.Data
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.CreatedTasks)
+                .WithOne(t => t.Author)
+                .OnDelete(DeleteBehavior.ClientCascade);
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.ToDoTasks)
+                .WithOne(t => t.Performer)
+                .OnDelete(DeleteBehavior.ClientCascade);
         }
     }
 }
