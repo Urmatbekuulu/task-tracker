@@ -7,18 +7,15 @@ namespace task_tracker.ApiEndpoints.Task
     {
         public class Create
         {
-            [Required]
             public int Id { get; set; }
-            [Required]
             public string Name { get; set; }
-            [Required]
-            public string TaskStatus { get; set; }
-            [Required]
+            public TaskStatus TaskStatus { get; set; }
             public string Description { get; set; }
-            [Required]
             public int Priority { get; set; }
-            [Required]
             public int ProjectId { get; set; }
+            public int AuthorId { get; set; }
+            public int PerformerId { get; set; }
+            
         }
         public class List
         {

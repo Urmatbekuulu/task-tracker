@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>task_tracker</RootNamespace>
-    <UserSecretsId>4a87cb57-b2bd-45ac-8782-111c073a2bce</UserSecretsId>
     <Nullable>enable</Nullable>
+    <UserSecretsId>507c5e2a-b0e4-4442-a2f7-32265e014c03</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

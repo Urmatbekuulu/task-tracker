@@ -1,9 +1,11 @@
 ﻿
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.BLL.Interfaces;
 using task_tracker.DAL.Data;
@@ -16,11 +18,13 @@ namespace task_tracker.ApiEndpoints.Task
     {
         private readonly ITaskRepository _taskRepository;
         private readonly IMapper _mapper;
+        private readonly ApplicationDbContext _dbContext;
 
-        public ViewDetail(ITaskRepository taskRepository, IMapper mapper)
+        public ViewDetail(ITaskRepository taskRepository, IMapper mapper,ApplicationDbContext dbContext)
         {
             _taskRepository = taskRepository;
             _mapper = mapper;
+            _dbContext = dbContext;
         }
 
 
@@ -36,7 +40,7 @@ namespace task_tracker.ApiEndpoints.Task
             CancellationToken cancellationToken = new CancellationToken())
         {
 
-            var task = await _taskRepository.GetByIdAsync(id);
+            var task = await _dbContext.Tasks.FindAsync(id);
 
             if (task is null) return BadRequest("Task not found");
 

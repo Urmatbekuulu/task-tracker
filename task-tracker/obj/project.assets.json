@@ -7013,19 +7013,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Notnik_kg\\.nuget\\packages\\": {}
+    "C:\\Users\\Raatbek\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker\\task-tracker.csproj",
+      "projectUniqueName": "C:\\Users\\Raatbek\\RiderProjects\\task-tracker\\task-tracker\\task-tracker.csproj",
       "projectName": "task-tracker",
-      "projectPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker\\task-tracker.csproj",
-      "packagesPath": "C:\\Users\\Notnik_kg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker\\obj\\",
+      "projectPath": "C:\\Users\\Raatbek\\RiderProjects\\task-tracker\\task-tracker\\task-tracker.csproj",
+      "packagesPath": "C:\\Users\\Raatbek\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Raatbek\\RiderProjects\\task-tracker\\task-tracker\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Notnik_kg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Raatbek\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7039,11 +7039,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj": {
-              "projectPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj"
+            "C:\\Users\\Raatbek\\RiderProjects\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj": {
+              "projectPath": "C:\\Users\\Raatbek\\RiderProjects\\task-tracker\\task-tracker.BLL\\task-tracker.BLL.csproj"
             },
-            "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj": {
-              "projectPath": "C:\\Users\\Notnik_kg\\c#\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj"
+            "C:\\Users\\Raatbek\\RiderProjects\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj": {
+              "projectPath": "C:\\Users\\Raatbek\\RiderProjects\\task-tracker\\task-tracker.DAL\\task-tracker.DAL.csproj"
             }
           }
         }
@@ -7097,7 +7097,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

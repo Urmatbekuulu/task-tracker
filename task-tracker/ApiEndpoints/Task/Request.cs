@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.ComponentModel.DataAnnotations;
 using task_tracker.Enums;
 
@@ -16,8 +17,12 @@ namespace task_tracker.ApiEndpoints.Task
             public string Description { get; set; }
             [Required]
             public int Priority { get; set; }
-            [Required]
+            [Required,Range(1,Int32.MaxValue)]
             public int ProjectId { get; set; }
+            [Required,Range(1,Int32.MaxValue)]
+            public int AuthorId { get; set; }
+            [Required,Range(1,Int32.MaxValue)]
+            public int PerformerId { get; set; }
             
         }
         public class Update:Create
