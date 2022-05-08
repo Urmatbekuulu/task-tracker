@@ -52,7 +52,7 @@ namespace task_tracker.ApiEndpoints.Employee
         /// <returns></returns>
         private async Task<bool> IsValid(DAL.Entities.Employee? employee)
         {
-            if (employee == null || employee?.Id < 1) return false;
+            if (employee == null ) return false;
             return true;
         }
     }

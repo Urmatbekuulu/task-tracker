@@ -19,12 +19,12 @@ namespace task_tracker.ApiEndpoints.Employee
         public class Update:Create
         {
             [Required]
-            public int Id { get; set; }
+            public string Id { get; set; }
             
         }
         public class Delete
         {
-            
+            public string Id { get; set; }
         }
 
         public class List

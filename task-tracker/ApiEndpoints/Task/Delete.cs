@@ -10,7 +10,7 @@ using task_tracker.DAL.Interfaces;
 
 namespace task_tracker.ApiEndpoints.Project.Requests
 {
-    public class DeleteTask:EndpointBaseAsync.WithRequest<Request.Delete>.WithResult<ActionResult>
+    public class DeleteTask:EndpointBaseAsync.WithRequest<int>.WithResult<ActionResult>
     {
         private readonly ITaskRepository _taskRepository;
         private readonly ApplicationDbContext _dbContext;
@@ -27,9 +27,9 @@ namespace task_tracker.ApiEndpoints.Project.Requests
             OperationId = "Task.Delete",
             Tags = new[] { "Tasks" })
         ]
-        public override async Task<ActionResult> HandleAsync(Request.Delete request, CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<ActionResult> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
         {
-            await _taskRepository.DeleteByIdAsync(request.Id);
+            await _taskRepository.DeleteByIdAsync(id);
             await _dbContext.SaveChangesAsync();
             return Ok(); 
         }

@@ -9,7 +9,7 @@ namespace task_tracker.DAL.Entities
         public string Name { get; set; }
         public string CustomerName { get; set; }
         public string PerformingCompany { get; set; }
-        public int SupervisorId { get; set; }
+        public string SupervisorId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime CompletionDate { get; set; }
         public ProjectStatus ProjectStatus { get; set; }

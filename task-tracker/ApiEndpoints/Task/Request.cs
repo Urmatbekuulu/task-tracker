@@ -19,10 +19,10 @@ namespace task_tracker.ApiEndpoints.Task
             public int Priority { get; set; }
             [Required,Range(1,Int32.MaxValue)]
             public int ProjectId { get; set; }
-            [Required,Range(1,Int32.MaxValue)]
-            public int AuthorId { get; set; }
-            [Required,Range(1,Int32.MaxValue)]
-            public int PerformerId { get; set; }
+            [Required]
+            public string AuthorId { get; set; }
+            [Required]
+            public string PerformerId { get; set; }
             
         }
         public class Update:Create

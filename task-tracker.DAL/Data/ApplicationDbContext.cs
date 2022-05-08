@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using task_tracker.DAL.Entities;
 using Task = task_tracker.DAL.Entities.Task;
@@ -7,13 +9,13 @@ using Task = task_tracker.DAL.Entities.Task;
 
 namespace task_tracker.DAL.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<Employee>
     {
         public DbSet<Project> Projects { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 

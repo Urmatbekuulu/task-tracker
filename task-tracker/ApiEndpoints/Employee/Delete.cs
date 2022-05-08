@@ -8,7 +8,7 @@ using task_tracker.DAL.Data;
 
 namespace task_tracker.ApiEndpoints.Employee
 {
-    public class Delete:EndpointBaseAsync.WithRequest<int>.WithResult<ActionResult<Response.Delete>>
+    public class Delete:EndpointBaseAsync.WithRequest<Request.Delete>.WithResult<ActionResult<Response.Delete>>
     { 
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -19,17 +19,16 @@ namespace task_tracker.ApiEndpoints.Employee
             _mapper = mapper;
         }
 
-        [HttpDelete("api/empmloyee/delete/{id:int:min(1)}")]
+        [HttpDelete("api/empmloyee/delete/")]
         [SwaggerOperation(
             Summary = "Delete Employee",
             Description = "Deletes Employee by id",
             OperationId = "Employee.Delete",
             Tags = new[] { "Employee" })
         ]
-        public override async Task<ActionResult<Response.Delete>> HandleAsync(int id, CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<ActionResult<Response.Delete>> HandleAsync(Request.Delete request, CancellationToken cancellationToken = new CancellationToken())
         {
-            if (!(await IsValidId(id))) return BadRequest("Error from resx resource can be send");
-            var employee = await _dbContext.Employees.FindAsync(id);
+            var employee = await _dbContext.Employees.FindAsync(request.Id);
 
             if (employee is null) return BadRequest("Employee with given Id not found");
 
@@ -37,13 +36,6 @@ namespace task_tracker.ApiEndpoints.Employee
 
             await _dbContext.SaveChangesAsync();
             return Ok(  "Successfully delted");
-        }
-
-        private async Task<bool> IsValidId(int id)
-        {
-            if (id < 1) return false;
-
-            return true;
         }
     }
 }

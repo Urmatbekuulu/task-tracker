@@ -16,7 +16,7 @@ namespace task_tracker.ApiEndpoints.Project
             [Required]
             public string PerformingCompany { get; set; }
             [Required]
-            public int SupervisorId { get; set; }
+            public string SupervisorId { get; set; }
             [Required]
             public DateTime StartDate { get; set; }
             [Required]
@@ -28,8 +28,8 @@ namespace task_tracker.ApiEndpoints.Project
         }
         public class Delete
         {
-            [Required,Range(1,Int32.MaxValue)]
-            public int Id { get; set; }
+            [Required]
+            public string Id { get; set; }
         }
         
 
@@ -42,7 +42,7 @@ namespace task_tracker.ApiEndpoints.Project
             [Required,Range(1,Int32.MaxValue)]
             public int ProjectId { get; set; }
             [Required]
-            public int[] EmployeeIds { get; set; }
+            public string[] EmployeeIds { get; set; }
         }
     }
 }
