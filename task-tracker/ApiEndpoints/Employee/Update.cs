@@ -32,7 +32,7 @@ namespace task_tracker.ApiEndpoints.Employee
             )]
         public override async Task<ActionResult<Response.Update>> HandleAsync(Request.Update request, CancellationToken cancellationToken = new CancellationToken())
         {
-            var employee = _mapper.Map<DAL.Entities.Employee>(request);
+            var employee = _mapper.Map<DAL.Entities.ApplicationUser>(request);
             if (!(await IsValid(employee))) return BadRequest("Something went wrong");
             var realemp =await _dbContext.Employees.FindAsync(employee.Id);
 
@@ -50,7 +50,7 @@ namespace task_tracker.ApiEndpoints.Employee
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        private async Task<bool> IsValid(DAL.Entities.Employee? employee)
+        private async Task<bool> IsValid(DAL.Entities.ApplicationUser? employee)
         {
             if (employee == null ) return false;
             return true;

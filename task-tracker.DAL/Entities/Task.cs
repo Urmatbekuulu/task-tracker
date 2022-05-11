@@ -11,10 +11,10 @@ namespace task_tracker.DAL.Entities
         public string Description { get; set; }
         public int Priority { get; set; }
         public int ProjectId { get; set; }
-       public Employee Author { get; set; }
+       public ApplicationUser Author { get; set; }
        public string AuthorId { get; set; }
        public string PerformerId { get; set; }
-        public Employee Performer { get; set; }
+        public ApplicationUser Performer { get; set; }
         public Project Project { get; set;}
         
     }

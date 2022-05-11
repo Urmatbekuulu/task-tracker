@@ -21,7 +21,7 @@ namespace task_tracker.DAL
     {
         public static void AddJwtIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddIdentity<Employee, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     options.User.RequireUniqueEmail = true;
                     options.Password.RequireDigit = false;

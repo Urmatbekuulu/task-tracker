@@ -29,7 +29,7 @@ namespace task_tracker.ApiEndpoints.Employee
         ]
         public override async Task<ActionResult<Response.Create>> HandleAsync(Request.Create request, CancellationToken cancellationToken = new CancellationToken())
         {
-            var employee = _mapper.Map<DAL.Entities.Employee>(request);
+            var employee = _mapper.Map<DAL.Entities.ApplicationUser>(request);
             var result = await _dbContext.AddAsync(employee);
             await _dbContext.SaveChangesAsync();
 

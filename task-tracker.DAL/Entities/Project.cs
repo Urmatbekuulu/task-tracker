@@ -14,7 +14,7 @@ namespace task_tracker.DAL.Entities
         public DateTime CompletionDate { get; set; }
         public ProjectStatus ProjectStatus { get; set; }
         public int Priority { get; set; }
-        public List<Employee> Employees { get; set; } = new();
+        public List<ApplicationUser> Employees { get; set; } = new();
         public List<Task> Tasks { get; set; } = new();
 
     }

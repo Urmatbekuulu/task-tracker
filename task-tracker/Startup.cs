@@ -35,6 +35,7 @@ namespace task_tracker
             services.AddBusinessServices(Configuration);
             //Add Data Access layer services
             services.AddDAccessLayerServices(Configuration);
+            services.AddJwtIdentity(Configuration);
 
             services.AddAutoMapper(currentAssembly);
         }

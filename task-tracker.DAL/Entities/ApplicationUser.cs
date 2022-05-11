@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace task_tracker.DAL.Entities
 {
-    public class Employee:IdentityUser
+    public class ApplicationUser:IdentityUser
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string? MiddleName { get; set; }
+        public string? Middlename { get; set; }
         
         public List<Project> Projects { get; set; } = new();
         
