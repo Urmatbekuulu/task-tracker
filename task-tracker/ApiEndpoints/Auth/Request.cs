@@ -1,10 +1,17 @@
-﻿namespace task_tracker.ApiEndpoints.Auth
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace task_tracker.ApiEndpoints.Auth
 {
     public class Request
     {
         public class Login
         {
-            public string Username { get; set; }
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
+           
+            [Required]
+            [DataType(DataType.Password)]
             public string Password { get; set; }
         }
     }

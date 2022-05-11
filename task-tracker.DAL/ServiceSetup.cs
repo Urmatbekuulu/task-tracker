@@ -11,6 +11,7 @@ using task_tracker.DAL.Common.Extensions;
 using task_tracker.DAL.Configuration;
 using task_tracker.DAL.Data;
 using task_tracker.DAL.Entities;
+using task_tracker.DAL.Identity;
 using task_tracker.DAL.Interfaces;
 using task_tracker.DAL.Repositories;
 using Task = System.Threading.Tasks.Task;
@@ -92,6 +93,7 @@ namespace task_tracker.DAL
                         }
                     };
                 });
+            services.AddScoped<IJwtFactory, JwtFactory>();
         }
         public static void AddDAccessLayerServices(this IServiceCollection services, IConfiguration configuration)
         {
