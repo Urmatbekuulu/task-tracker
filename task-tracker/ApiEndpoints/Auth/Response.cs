@@ -4,7 +4,7 @@ namespace task_tracker.ApiEndpoints.Auth
 {
     public class Response
     {
-        public class Authenticate
+        public class Login
         {
             public string Username { get; set; }
 
