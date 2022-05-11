@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using task_tracker.DAL.Entities;
+using task_tracker.DAL.Interfaces;
 
 namespace task_tracker.ApiEndpoints.Auth
 {
@@ -14,12 +15,16 @@ namespace task_tracker.ApiEndpoints.Auth
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IJwtFactory _jwtFactory;
 
-        public Authenticate(SignInManager<DAL.Entities.ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager)
+        public Authenticate(
+            SignInManager<DAL.Entities.ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            IJwtFactory jwtFactory)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _jwtFactory = jwtFactory;
         }
 
 
@@ -41,10 +46,14 @@ namespace task_tracker.ApiEndpoints.Auth
 
             if (!result.Succeeded) return BadRequest("Wrong email or password");
 
+            var (token, expires) = await _jwtFactory.CreateTokenAsync(user.Id, user.Email);
+
             return new Response.Login()
             {
                 Username = user.Email,
-                UserId = user.Id
+                UserId = user.Id,
+                JwtToken = token,
+                JwtExpires = expires
 
             };
         }
