@@ -42,7 +42,7 @@ namespace task_tracker.ApiEndpoints.Auth
 
             var user = await _userManager.FindByEmailAsync(request.Email);
 
-            var result = await _signInManager.PasswordSignInAsync(user, request.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, false);
 
             if (!result.Succeeded) return BadRequest("Wrong email or password");
 

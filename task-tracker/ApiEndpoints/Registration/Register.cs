@@ -33,7 +33,10 @@ namespace task_tracker.ApiEndpoints.Registration
 
             var user = _mapper.Map<ApplicationUser>(request);
 
-            var result = await _userManager.CreateAsync(user);
+            user.UserName = user.Email;
+            
+
+            var result = await _userManager.CreateAsync(user,request.Password);
             
             if (!result.Succeeded) return BadRequest("Something was wrong");
 

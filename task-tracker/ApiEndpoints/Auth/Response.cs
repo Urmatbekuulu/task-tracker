@@ -14,9 +14,7 @@ namespace task_tracker.ApiEndpoints.Auth
 
             public DateTime JwtExpires { get; set; }
 
-            public string RefreshToken { get; set; }
-
-            public DateTime RefreshExpires { get; set; }
+          
         }
     }
 }
