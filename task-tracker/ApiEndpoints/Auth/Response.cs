@@ -14,7 +14,6 @@ namespace task_tracker.ApiEndpoints.Auth
 
             public DateTime JwtExpires { get; set; }
 
-          
         }
     }
 }
